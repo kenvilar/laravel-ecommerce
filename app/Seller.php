@@ -10,9 +10,4 @@ class Seller extends Model
     {
         return $this->hasMany(Product::class);
     }
-
-    public function transactions()
-    {
-        return $this->hasMany(Transaction::class);
-    }
 }
