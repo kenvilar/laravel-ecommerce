@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Buyer extends Model
 {
-    public function transactions() {
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
     }
 }
