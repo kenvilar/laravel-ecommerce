@@ -49,7 +49,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::query()->find($id);
+        $user = User::query()->findOrFail($id);
 
         return response()->json(['user' => $user], 200);
     }
