@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Buyer;
 use App\Category;
 use App\Product;
-use App\Seller;
 use App\Transaction;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -20,20 +18,19 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        Buyer::truncate();
+        User::truncate();
         Category::truncate();
         Product::truncate();
-        Seller::truncate();
         Transaction::truncate();
-        User::truncate();
         DB::table('category_product')->truncate();
 
         $categoriesQuantity = 30;
         $productsQuantity = 1000;
-        $transactionsQuantity = 200;
+        $transactionsQuantity = 1000;
         $usersQuantity = 200;
 
         factory(User::class, $usersQuantity)->create();
+        factory(Category::class, $categoriesQuantity)->create();
         factory(Product::class, $productsQuantity)->create()->each(function ($product) {
             $categories = Category::all()->random(mt_rand(1, 5))->pluck('id');
 
@@ -41,6 +38,5 @@ class DatabaseSeeder extends Seeder
             $product->categories()->attach($categories);
         });
         factory(Transaction::class, $transactionsQuantity)->create();
-        factory(Category::class, $categoriesQuantity)->create();
     }
 }
