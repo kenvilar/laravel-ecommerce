@@ -7,6 +7,7 @@ use App\Product;
 use App\Seller;
 use App\Transaction;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Seller::truncate();
         Transaction::truncate();
         User::truncate();
+        DB::table('category_product')->truncate();
     }
 }
