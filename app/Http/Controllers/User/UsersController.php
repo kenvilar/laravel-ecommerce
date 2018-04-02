@@ -88,7 +88,38 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::query()->findOrFail($id);
+
+        $this->validate($request, [
+            'email' => 'email|unique:users,email,' . $user->id,
+            'password' => 'min:6|confirmed',
+            'admin' => 'in:' . User::ADMIN_USER . ',' . User::NORMAL_USER . '',
+        ]);
+
+        if ($request->exists('name')) {
+            $user->name = $request->name;
+        }
+
+        if ($request->exists('email') && $request->email != $user->email) {
+            $user->verified = User::UNVERIFIED_USER;
+            $user->verification_token = User::generateVerificationCode();
+            $user->email = $request->email;
+        }
+
+        if ($request->exists('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        if ($request->exists('admin')) {
+            if (!$user->isVerified) {
+                return response()->json([
+                    'error' => 'Only verified users can modify the admin field.',
+                    'code' => 409,
+                ], 409);
+            }
+
+            $user->admin = $request->admin;
+        }
     }
 
     /**
