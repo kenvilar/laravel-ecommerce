@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\ApiController;
 use App\User;
 use Illuminate\Http\Request;
+use Validator;
 
 class UsersController extends ApiController
 {
@@ -18,22 +19,25 @@ class UsersController extends ApiController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed'
         ]);
 
-        $data = $request->all();
-        $data['password'] = bcrypt($request->input('password'));
-        $data['verified'] = User::UNVERIFIED_USER;
-        $data['verification_token'] = User::generateVerificationCode();
-        $data['admin'] = User::NORMAL_USER;
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->messages(), 'success' => false], 401);
+        } else {
+            $data = $request->all();
+            $data['password'] = bcrypt($request->input('password'));
+            $data['verified'] = User::UNVERIFIED_USER;
+            $data['verification_token'] = User::generateVerificationCode();
+            $data['admin'] = User::NORMAL_USER;
 
-        $user = User::query()->create($data);
+            $user = User::query()->create($data);
 
-        //return response()->json(['data' => $user], 201);
-        return $this->showOne($user, 201);
+            return $this->showOne($user, 201);
+        }
     }
 
     public function show($id)
