@@ -17,6 +17,8 @@ class SellersController extends Controller
 
     public function show($id)
     {
-        //
+        $seller = Seller::query()->has('products')->findOrFail($id);
+
+        return response()->json(['data' => $seller], 200);
     }
 }
