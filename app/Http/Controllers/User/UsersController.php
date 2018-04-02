@@ -27,10 +27,7 @@ class UsersController extends ApiController
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'message' => $validator->messages(),
-                'success' => $validator->passes()
-            ], 401);
+            return $this->errorResponse($validator->messages(), 401);
         } else {
             $data = $request->all();
             $data['password'] = bcrypt($request->input('password'));
@@ -46,15 +43,9 @@ class UsersController extends ApiController
 
     public function show($id)
     {
-        try {
-            $user = User::query()->findOrFail($id);
+        $user = User::query()->findOrFail($id);
 
-            return $this->showOne($user);
-        } catch (ModelNotFoundException $e) {
-            $getModel = strtolower(class_basename($e->getModel()));
-
-            return $this->errorResponse("No query results for ${getModel}", 404);
-        }
+        return $this->showOne($user);
     }
 
     public function update(Request $request, $id)
