@@ -51,10 +51,9 @@ class UsersController extends ApiController
 
             return $this->showOne($user);
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => $e->getMessage(),
-                'success' => $e->getCode(),
-            ]);
+            $getModel = strtolower(class_basename($e->getModel()));
+
+            return response()->json(['message' => "No query results for ${getModel} 10001",]);
         }
     }
 
