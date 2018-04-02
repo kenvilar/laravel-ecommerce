@@ -4,8 +4,11 @@ namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -53,6 +56,18 @@ class Handler extends ExceptionHandler
             $getModel = strtolower(class_basename($exception->getModel()));
 
             return $this->errorResponse("No query results for ${getModel}", 404);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return $this->errorResponse("Unauthenticated!", 401);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return $this->errorResponse($exception->getMessage(), 401);
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return $this->errorResponse('The specified URL cannot be found.', 404);
         }
 
         return parent::render($request, $exception);
