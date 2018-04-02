@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Seller;
 
+use App\Http\Controllers\ApiController;
 use App\Seller;
-use App\Http\Controllers\Controller;
 
-class SellersController extends Controller
+class SellersController extends ApiController
 {
 
     public function index()
