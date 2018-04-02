@@ -12,7 +12,7 @@ class UsersController extends ApiController
     public function index()
     {
         $users = User::all();
-        
+
         return $this->showAll($users);
     }
 
@@ -69,20 +69,14 @@ class UsersController extends ApiController
 
         if ($request->exists('admin')) {
             if (!$user->isVerified()) {
-                return response()->json([
-                    'error' => 'Only verified users can modify the admin field.',
-                    'code' => 409,
-                ], 409);
+                return $this->errorResponse('Only verified users can modify the admin field.', 409);
             }
 
             $user->admin = $request->admin;
         }
 
         if (!$user->isDirty()) {
-            return response()->json([
-                'error' => 'You need to specify a different value to update.',
-                'code' => 409,
-            ], 409);
+            return $this->errorResponse('You need to specify a different value to update.', 409);
         }
 
         $user->update();
