@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Seller;
 
-use Illuminate\Http\Request;
+use App\Seller;
 use App\Http\Controllers\Controller;
 
 class SellersController extends Controller
@@ -10,7 +10,9 @@ class SellersController extends Controller
 
     public function index()
     {
-        //
+        $sellers = Seller::query()->has('products')->get();
+
+        return response()->json(['data' => $sellers], 200);
     }
 
     public function show($id)
