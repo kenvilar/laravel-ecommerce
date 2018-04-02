@@ -15,7 +15,7 @@ class BuyersController extends Controller
      */
     public function index()
     {
-        $buyers = Buyer::all();
+        $buyers = Buyer::query()->has('transactions')->get();
 
         return response()->json(['data' => $buyers], 200);
     }
