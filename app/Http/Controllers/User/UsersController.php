@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -45,9 +46,16 @@ class UsersController extends ApiController
 
     public function show($id)
     {
-        $user = User::query()->findOrFail($id);
+        try {
+            $user = User::query()->findOrFail($id);
 
-        return $this->showOne($user);
+            return $this->showOne($user);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'success' => $e->getCode(),
+            ]);
+        }
     }
 
     public function update(Request $request, $id)
