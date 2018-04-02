@@ -12,8 +12,8 @@ class UsersController extends ApiController
     public function index()
     {
         $users = User::all();
-
-        return response()->json(['data' => $users], 200);
+        
+        return $this->showAll($users);
     }
 
     public function store(Request $request)
@@ -32,14 +32,15 @@ class UsersController extends ApiController
 
         $user = User::query()->create($data);
 
-        return response()->json(['data' => $user], 201);
+        //return response()->json(['data' => $user], 201);
+        return $this->showOne($user, 201);
     }
 
     public function show($id)
     {
         $user = User::query()->findOrFail($id);
 
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user);
     }
 
     public function update(Request $request, $id)
@@ -85,6 +86,8 @@ class UsersController extends ApiController
         }
 
         $user->update();
+
+        return $this->showOne($model);
     }
 
     public function destroy($id)
@@ -93,6 +96,6 @@ class UsersController extends ApiController
 
         $user->delete();
 
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user);
     }
 }
