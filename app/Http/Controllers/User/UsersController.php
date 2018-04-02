@@ -26,7 +26,10 @@ class UsersController extends ApiController
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->messages(), 'success' => false], 401);
+            return response()->json([
+                'message' => $validator->messages(),
+                'success' => $validator->passes()
+            ], 401);
         } else {
             $data = $request->all();
             $data['password'] = bcrypt($request->input('password'));
