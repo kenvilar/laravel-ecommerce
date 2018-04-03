@@ -22,7 +22,7 @@ class CategoriesController extends ApiController
 
     public function show(Category $category)
     {
-        //
+        return $this->showOne($category);
     }
 
     public function update(Request $request, $id)
