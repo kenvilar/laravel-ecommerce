@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             $getModel = strtolower(class_basename($exception->getModel()));
 
-            return $this->errorResponse("No query results for ${getModel}", 404);
+            return $this->errorResponse("Does not exists any ${getModel} with the specified identificator.", 404);
         }
 
         if ($exception instanceof AuthenticationException) {
