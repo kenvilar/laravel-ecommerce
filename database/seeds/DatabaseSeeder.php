@@ -30,13 +30,14 @@ class DatabaseSeeder extends Seeder
 
         $usersQuantity = 1000;
         $categoriesQuantity = 30;
-        $sellersAndBuyersQuantity = 10;
+        $sellersQuantity = 10;
+        $buyersQuantity = 100;
         $productsQuantity = 1000;
         $transactionsQuantity = 1000;
 
         factory(User::class, $usersQuantity)->create();
-        factory(Seller::class, $sellersAndBuyersQuantity)->create();
-        factory(Buyer::class, $sellersAndBuyersQuantity)->create();
+        factory(Seller::class, $sellersQuantity)->create();
+        factory(Buyer::class, $buyersQuantity)->create();
         factory(Category::class, $categoriesQuantity)->create();
         factory(Product::class, $productsQuantity)->create()->each(function ($product) {
             $categories = Category::all()->random(mt_rand(1, 5))->pluck('id');
