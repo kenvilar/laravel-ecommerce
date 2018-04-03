@@ -32,9 +32,19 @@ class CategoriesController extends ApiController
         return $this->showOne($category);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->fill($request->only([
+            'name', 'description'
+        ]));
+
+        if (!$category->isDirty()) {
+            return $this->errorResponse('You need to specify any different value to update.', 422);
+        }
+
+        $category->update();
+        
+        return $this->showOne($category);
     }
 
     public function destroy(Category $category)
