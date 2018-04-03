@@ -20,25 +20,21 @@ class UsersController extends ApiController
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed',
         ]);
 
-        if ($validator->fails()) {
-            return $this->errorResponse($validator->messages(), 401);
-        } else {
-            $data = $request->all();
-            $data['password'] = bcrypt($request->input('password'));
-            $data['verified'] = User::UNVERIFIED_USER;
-            $data['verification_token'] = User::generateVerificationCode();
-            $data['admin'] = User::NORMAL_USER;
+        $data = $request->all();
+        $data['password'] = bcrypt($request->input('password'));
+        $data['verified'] = User::UNVERIFIED_USER;
+        $data['verification_token'] = User::generateVerificationCode();
+        $data['admin'] = User::NORMAL_USER;
 
-            $user = User::query()->create($data);
+        $user = User::query()->create($data);
 
-            return $this->showOne($user, 201);
-        }
+        return $this->showOne($user, 201);
     }
 
     public function show(User $user)
