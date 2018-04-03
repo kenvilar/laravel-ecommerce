@@ -81,6 +81,7 @@ class Handler extends ExceptionHandler
             //return $this->errorResponse('The specified method for the request is invalid.', $code);
             return $this->errorResponse('The specified method for the request is invalid.', 405);
         }
+        
         if ($exception instanceof QueryException) {
             $errorCode = $exception->errorInfo[1];
 
