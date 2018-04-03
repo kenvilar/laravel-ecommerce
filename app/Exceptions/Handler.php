@@ -81,13 +81,17 @@ class Handler extends ExceptionHandler
             //return $this->errorResponse('The specified method for the request is invalid.', $code);
             return $this->errorResponse('The specified method for the request is invalid.', 405);
         }
-        
+
         if ($exception instanceof QueryException) {
             $errorCode = $exception->errorInfo[1];
 
             if ($errorCode === 1451) {
                 return $this->errorResponse('Cannot delete this resource permanently.', 409);
             }
+        }
+
+        if (env('APP_DEBUG') || config('app.debug')) {
+            return $this->errorResponse('Unexpected Exception', 500);
         }
 
         return parent::render($request, $exception);
