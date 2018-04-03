@@ -18,20 +18,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
 
-        User::truncate();
-        Seller::truncate();
-        Buyer::truncate();
-        Category::truncate();
-        Product::truncate();
-        Transaction::truncate();
+        User::query()->truncate();
+        Seller::query()->truncate();
+        Buyer::query()->truncate();
+        Category::query()->truncate();
+        Product::query()->truncate();
+        Transaction::query()->truncate();
         DB::table('category_product')->truncate();
 
         $usersQuantity = 1000;
         $categoriesQuantity = 30;
         $sellersQuantity = 10;
-        $buyersQuantity = 100;
+        $buyersQuantity = 5;
         $productsQuantity = 1000;
         $transactionsQuantity = 1000;
 
