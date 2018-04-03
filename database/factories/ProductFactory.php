@@ -3,11 +3,10 @@
 use Faker\Generator as Faker;
 use App\Product;
 use App\User;
-use App\Seller;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'seller_id' => Seller::all()->random()->id,
+        'seller_id' => User::all()->random()->id,
         'name' => $faker->word,
         'description' => $faker->paragraph(1),
         'quantity' => $faker->numberBetween(1, 10),

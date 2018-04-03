@@ -11,7 +11,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
     $buyer = User::all()->except($seller->id)->random();
 
     return [
-        'quantity' => $faker->numberBetween(1, 100),
+        'quantity' => $faker->numberBetween(1, 5),
         'buyer_id' => $buyer->id,
         'product_id' => $seller->products->random()->id,
     ];

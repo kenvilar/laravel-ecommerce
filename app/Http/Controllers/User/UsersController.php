@@ -54,21 +54,21 @@ class UsersController extends ApiController
             'admin' => 'in:' . User::ADMIN_USER . ',' . User::NORMAL_USER . '',
         ]);
 
-        if ($request->exists('name')) {
+        if ($request->has('name')) {
             $user->name = $request->name;
         }
 
-        if ($request->exists('email') && $request->email != $user->email) {
+        if ($request->has('email') && $request->email != $user->email) {
             $user->verified = User::UNVERIFIED_USER;
             $user->verification_token = User::generateVerificationCode();
             $user->email = $request->email;
         }
 
-        if ($request->exists('password')) {
+        if ($request->has('password')) {
             $user->password = bcrypt($request->password);
         }
 
-        if ($request->exists('admin')) {
+        if ($request->has('admin')) {
             if (!$user->isVerified()) {
                 return $this->errorResponse('Only verified users can modify the admin field.', 409);
             }
