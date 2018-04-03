@@ -3,9 +3,8 @@
 namespace App;
 
 use App\Scopes\SellerScope;
-use Illuminate\Database\Eloquent\Model;
 
-class Seller extends Model
+class Seller extends User
 {
     public static function boot()
     {
