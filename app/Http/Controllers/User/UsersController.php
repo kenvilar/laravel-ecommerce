@@ -82,7 +82,7 @@ class UsersController extends ApiController
 
         $user->update();
 
-        return $this->showOne($model);
+        return $this->showOne($user);
     }
 
     public function destroy(User $user)
