@@ -15,10 +15,13 @@ class BuyersController extends ApiController
         return $this->showAll($buyers);
     }
 
-    public function show($id)
+    public function show(Buyer $buyer)
     {
-        $buyer = Buyer::query()->has('transactions')->findOrFail($id);
-
+        //The original code of this method is
+        //$buyer = Buyer::query()->has('transactions')->findOrFail($id);
+        //meaning it has dependency method of has('transactions')
+        //So you need to create a App\Scopes\BuyerScope and put it on the Buyer Model with boot method
+        //to use the laravel implicit model binding
         return $this->showOne($buyer);
     }
 }
