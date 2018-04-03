@@ -3,12 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
+
     const AVAILABLE = 'available';
     const UNAVAILABLE = 'unavailable';
 
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'seller_id',
         'name',
