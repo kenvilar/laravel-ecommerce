@@ -3,9 +3,8 @@
 namespace App;
 
 use App\Scopes\BuyerScope;
-use Illuminate\Database\Eloquent\Model;
 
-class Buyer extends Model
+class Buyer extends User
 {
     protected static function boot()
     {
