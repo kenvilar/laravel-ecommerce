@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class
-User extends Authenticatable
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -15,6 +14,8 @@ User extends Authenticatable
 
     const ADMIN_USER = 'true';
     const NORMAL_USER = 'false';
+
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -41,26 +42,29 @@ User extends Authenticatable
         'verification_token',
     ];
 
-    public function setNameAttribute($name) {
+    public function setNameAttribute($name)
+    {
         $this->attributes['name'] = strtolower($name);
     }
-    
-    public function getNameAttribute($name) {
+
+    public function getNameAttribute($name)
+    {
         return ucwords($name);
     }
 
-    public function setEmailAttribute($email) {
+    public function setEmailAttribute($email)
+    {
         $this->attributes['email'] = strtolower($email);
     }
 
     public function isVerified()
     {
-        return $this->verified = User::VERIFIED_USER;
+        return $this->verified == User::VERIFIED_USER;
     }
 
     public function isAdmin()
     {
-        return $this->admin = User::ADMIN_USER;
+        return $this->admin == User::ADMIN_USER;
     }
 
     public static function generateVerificationCode()
