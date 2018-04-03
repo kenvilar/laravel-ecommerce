@@ -29,6 +29,10 @@ Route::resource('transactions.categories', 'Transaction\TransactionsCategoriesCo
     'only' => ['index',]
 ]);
 
+Route::resource('transactions.sellers', 'Transaction\TransactionsSellersController', [
+    'only' => ['index',]
+]);
+
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
