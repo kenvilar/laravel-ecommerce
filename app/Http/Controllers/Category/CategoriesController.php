@@ -17,7 +17,14 @@ class CategoriesController extends ApiController
 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $newCategory = Category::query()->create($request->all());
+        
+        return $this->showOne($newCategory, 201);
     }
 
     public function show(Category $category)
