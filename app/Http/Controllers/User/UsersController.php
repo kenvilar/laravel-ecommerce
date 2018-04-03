@@ -41,17 +41,13 @@ class UsersController extends ApiController
         }
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::query()->findOrFail($id);
-
         return $this->showOne($user);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::query()->findOrFail($id);
-
         $this->validate($request, [
             'email' => 'email|unique:users,email,' . $user->id,
             'password' => 'min:6|confirmed',
@@ -89,10 +85,8 @@ class UsersController extends ApiController
         return $this->showOne($model);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::query()->findOrFail($id);
-
         $user->delete();
 
         return $this->showOne($user);
