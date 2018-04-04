@@ -33,6 +33,8 @@ Route::resource('sellers', 'Seller\SellersController', ['only' => ['index', 'sho
 
 Route::resource('sellers.transactions', 'Seller\SellersTransactionsController', ['only' => ['index',]]);
 
+Route::resource('sellers.categories', 'Seller\SellersCategoriesController', ['only' => ['index',]]);
+
 /**
  * Users
  */
