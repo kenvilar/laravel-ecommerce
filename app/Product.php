@@ -21,6 +21,7 @@ class Product extends Model
         'status',
         'image',
     ];
+    protected $hidden = ['pivot'];
 
     public function isAvailable()
     {
