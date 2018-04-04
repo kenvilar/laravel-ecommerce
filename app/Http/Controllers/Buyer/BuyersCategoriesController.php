@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Buyer;
 use App\Http\Controllers\ApiController;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class BuyersCategoriesController extends ApiController
 {
