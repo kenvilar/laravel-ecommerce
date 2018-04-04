@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+/**
+ * Buyers
+ */
 Route::resource('buyers', 'Buyer\BuyersController', ['only' => ['index', 'show']]);
 
 Route::resource('buyers.transactions', 'Buyer\BuyersTransactionsController', ['only' => ['index',]]);
@@ -23,10 +26,21 @@ Route::resource('buyers.sellers', 'Buyer\BuyersSellersController', ['only' => ['
 
 Route::resource('buyers.categories', 'Buyer\BuyersCategoriesController', ['only' => ['index',]]);
 
+/**
+ * Sellers
+ */
 Route::resource('sellers', 'Seller\SellersController', ['only' => ['index', 'show']]);
 
+Route::resource('sellers.transactions', 'Seller\SellersTransactionsController', ['only' => ['index',]]);
+
+/**
+ * Users
+ */
 Route::resource('users', 'User\UsersController', ['except' => ['create', 'edit']]);
 
+/**
+ * Categories
+ */
 Route::resource('categories', 'Category\CategoriesController', ['except' => ['create', 'edit']]);
 
 Route::resource('categories.products', 'Category\CategoriesProductsController', ['only' => ['index',]]);
@@ -35,8 +49,14 @@ Route::resource('categories.sellers', 'Category\CategoriesSellersController', ['
 
 Route::resource('categories.buyers', 'Category\CategoriesBuyersController', ['only' => ['index',]]);
 
+/**
+ * Products
+ */
 Route::resource('products', 'Product\ProductsController', ['only' => ['index', 'show']]);
 
+/**
+ * Transactions
+ */
 Route::resource('transactions', 'Transaction\TransactionsController', ['only' => ['index', 'show']]);
 
 Route::resource('transactions.categories', 'Transaction\TransactionsCategoriesController', [
