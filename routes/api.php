@@ -37,6 +37,10 @@ Route::resource('sellers.categories', 'Seller\SellersCategoriesController', ['on
 
 Route::resource('sellers.buyers', 'Seller\SellersBuyersController', ['only' => ['index',]]);
 
+Route::resource('sellers.products', 'Seller\SellersProductsController', [
+    'except' => ['create', 'show', 'edit',]
+]);
+
 /**
  * Users
  */
