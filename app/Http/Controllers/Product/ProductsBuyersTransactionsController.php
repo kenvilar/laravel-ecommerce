@@ -33,7 +33,7 @@ class ProductsBuyersTransactionsController extends ApiController
             return $this->errorResponse('The product must be an available product.', 409);
         }
 
-        if ($request->quantity > $product->quantity) {
+        if ($product->quantity < $request->quantity) {
             return $this->errorResponse('The product does not have enough quantity for this transaction.', 409);
         }
 
