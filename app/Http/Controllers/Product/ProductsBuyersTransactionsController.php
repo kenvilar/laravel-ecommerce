@@ -7,7 +7,6 @@ use App\Product;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class ProductsBuyersTransactionsController extends ApiController
