@@ -70,6 +70,10 @@ Route::resource('products.categories', 'Product\ProductsCategoriesController', [
     'only' => ['index', 'update', 'destroy']
 ]);
 
+Route::resource('products.buyers.transactions', 'Product\ProductsBuyersTransactionsController', [
+    'only' => ['store']
+]);
+
 /**
  * Transactions
  */
