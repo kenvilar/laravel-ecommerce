@@ -47,9 +47,9 @@ class SellersProductsController extends ApiController
             'image' => 'image',
             'status' => 'in:' . Product::AVAILABLE . ',' . Product::UNAVAILABLE,
         ]);
-        
+
         $this->checkSeller($seller, $product);
-        
+
         $product->fill($request->only(['name', 'description', 'quantity']));
 
         if ($request->has('status')) {
@@ -65,16 +65,21 @@ class SellersProductsController extends ApiController
         }
 
         $product->save();
-        
+
         return $this->showOne($product);
     }
 
-    public function destroy(Seller $seller)
+    public function destroy(Seller $seller, Product $product)
     {
-        //
+        $this->checkSeller($seller, $product);
+
+        $product->delete();
+
+        return $this->showOne($product);
     }
 
-    private function checkSeller(Seller $seller, Product $product) {
+    private function checkSeller(Seller $seller, Product $product)
+    {
         if ($seller->id !== $product->seller_id) {
             throw new HttpException(422, 'The specified seller is not the actual seller of a product.');
         }
