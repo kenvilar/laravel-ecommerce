@@ -67,7 +67,7 @@ Route::resource('products.transactions', 'Product\ProductsTransactionsController
 Route::resource('products.buyers', 'Product\ProductsBuyersController', ['only' => ['index']]);
 
 Route::resource('products.categories', 'Product\ProductsCategoriesController', [
-    'only' => ['index', 'update', 'destory']
+    'only' => ['index', 'update', 'destroy']
 ]);
 
 /**
