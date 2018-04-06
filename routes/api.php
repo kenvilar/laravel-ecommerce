@@ -46,6 +46,8 @@ Route::resource('sellers.products', 'Seller\SellersProductsController', [
  */
 Route::resource('users', 'User\UsersController', ['except' => ['create', 'edit']]);
 
+Route::get('users/verify/{token}', 'User\UsersController@verify')->name('verify');
+
 /**
  * Categories
  */
