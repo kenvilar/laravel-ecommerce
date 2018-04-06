@@ -53,6 +53,11 @@ class SellersProductsController extends ApiController
 
         $product->fill($request->only(['name', 'description', 'quantity']));
 
+        if ($request->hasFile('image')) {
+            Storage::delete($product->image);
+            $product->image = $request->image->store('');
+        }
+
         if ($request->has('status')) {
             $product->status = $request->status;
 
