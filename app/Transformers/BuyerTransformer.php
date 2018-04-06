@@ -21,8 +21,8 @@ class BuyerTransformer extends TransformerAbstract
             'isVerified' => (int)$buyer->verified,
             //Do not include the admin
             //'isAdmin' => ($buyer->admin === 'true'),
-            'creationDate' => $buyer->created_at,
-            'lastChange' => $buyer->updated_at,
+            'creationDate' => (string)$buyer->created_at,
+            'lastChange' => (string)$buyer->updated_at,
             'deletedDate' => isset($buyer->deleted_at) ? (string)$buyer->deleted_at : null,
         ];
     }
