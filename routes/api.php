@@ -48,6 +48,8 @@ Route::resource('users', 'User\UsersController', ['except' => ['create', 'edit']
 
 Route::get('users/verify/{token}', 'User\UsersController@verify')->name('verify');
 
+Route::get('users/{user}/verify/resend', 'User\UsersController@resend')->name('resend');
+
 /**
  * Categories
  */
