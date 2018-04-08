@@ -97,9 +97,9 @@ class Handler extends ExceptionHandler
         }
 
         if (env('APP_DEBUG') || config('app.debug')) {
-            return $this->errorResponse('Unexpected Exception', 500);
+            return parent::render($request, $exception);
         }
 
-        return parent::render($request, $exception);
+        return $this->errorResponse('Unexpected Exception. Try later.', 500);
     }
 }
