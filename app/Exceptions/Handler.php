@@ -58,9 +58,14 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof ValidationException) {
-            $errors3 = $exception->errors();
+            $errors = $exception->errors();
 
-            return $this->errorResponse($errors3, 422);
+            if ($this->isFrontend($request)) {
+                return $request->ajax() ? response()->json($errors, 422) : redirect()->back()
+                    ->withInput($request->input())->withErrors($errors);
+            }
+
+            return $this->errorResponse($errors, 422);
         }
         if ($exception instanceof ModelNotFoundException) {
             $getModel = strtolower(class_basename($exception->getModel()));
@@ -69,6 +74,9 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof AuthenticationException) {
+            if ($this->isFrontend($request)) {
+                return redirect()->guest('login');
+            }
             return $this->errorResponse("Unauthenticated!", 401);
         }
 
@@ -101,10 +109,15 @@ class Handler extends ExceptionHandler
             return redirect()->back()->withInput($request->input());
         }
 
-        if (env('APP_DEBUG') || config('app.debug')) {
+        if (config('app.debug')) {
             return parent::render($request, $exception);
         }
 
         return $this->errorResponse('Unexpected Exception. Try later.', 500);
+    }
+
+    private function isFrontend($request)
+    {
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
 }
