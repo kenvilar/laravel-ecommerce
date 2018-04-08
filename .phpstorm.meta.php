@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-04-06 13:37:28.
+    * Generated on 2018-04-08 14:44:25.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -15,6 +15,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -150,6 +152,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -285,6 +289,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -420,6 +426,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -555,6 +563,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -690,6 +700,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -825,6 +837,8 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'url' => \Illuminate\Routing\UrlGenerator::class,
         'redirect' => \Illuminate\Routing\Redirector::class,
+        'Psr\Http\Message\ServerRequestInterface' => \Zend\Diactoros\ServerRequest::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Illuminate\Contracts\Routing\ResponseFactory' => \Illuminate\Routing\ResponseFactory::class,
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
