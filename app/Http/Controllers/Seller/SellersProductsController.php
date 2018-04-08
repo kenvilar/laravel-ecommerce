@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\ApiController;
 use App\Product;
 use App\Seller;
+use App\Transformers\SellerTransformer;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellersProductsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input:' . SellerTransformer::class)->only(['store', 'update']);
+    }
+
     public function index(Seller $seller)
     {
         $products = $seller->products;
