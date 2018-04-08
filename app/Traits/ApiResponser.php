@@ -114,7 +114,15 @@ trait ApiResponser
     {
         $requestUrl = request()->url();
 
-        return Cache::remember($requestUrl, 30 / 60, function () use ($data) {
+        $queryParams = request()->query();
+
+        ksort($queryParams);
+
+        $queryString = http_build_query($queryParams);
+
+        $fullUrl = "{$requestUrl}?{$queryString}";
+
+        return Cache::remember($fullUrl, 30 / 60, function () use ($data) {
             return $data;
         });
     }
