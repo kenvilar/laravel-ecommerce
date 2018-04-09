@@ -14,6 +14,8 @@ class ProductsCategoriesController extends ApiController
         $this->middleware('client.credentials')->only(['index']);
 
         $this->middleware('api:auth')->except(['index']);
+
+        $this->middleware('scope:manage-products')->except('index');
     }
 
     public function index(Product $product)
@@ -40,7 +42,7 @@ class ProductsCategoriesController extends ApiController
     public function destroy(Product $product, Category $category)
     {
         if (!$product->categories()->find($category->id)) {
-            return $this->errorResponse('The specefied category is not a category of this product.', 404);
+            return $this->errorResponse('The specified category is not a category of this product.', 404);
         }
 
         $product->categories()->detach($category->id);
