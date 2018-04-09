@@ -7,6 +7,10 @@ use App\Seller;
 
 class SellersController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index()
     {

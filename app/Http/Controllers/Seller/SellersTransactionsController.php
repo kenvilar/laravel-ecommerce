@@ -7,6 +7,11 @@ use App\Seller;
 
 class SellersTransactionsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Seller $seller)
     {
         $transactions = $seller->products()->has('transactions')->with('transactions')->get()

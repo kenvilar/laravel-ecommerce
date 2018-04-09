@@ -7,6 +7,11 @@ use App\Product;
 
 class ProductsTransactionsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Product $product)
     {
         $transactions = $product->transactions;

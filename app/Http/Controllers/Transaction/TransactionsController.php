@@ -7,6 +7,11 @@ use App\Transaction;
 
 class TransactionsController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         $transactions = Transaction::all();

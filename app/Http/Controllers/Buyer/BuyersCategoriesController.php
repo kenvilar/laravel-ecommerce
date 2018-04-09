@@ -7,6 +7,11 @@ use App\Http\Controllers\ApiController;
 
 class BuyersCategoriesController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Buyer $buyer)
     {
         $categories = $buyer->transactions()->with('product.categories')->get()

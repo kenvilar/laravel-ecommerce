@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class CategoriesBuyersController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Category $category)
     {
         $buyers = $category->products()->whereHas('transactions')->with('transactions.buyer')->get()
