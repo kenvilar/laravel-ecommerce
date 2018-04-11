@@ -13,8 +13,8 @@ class SellerPolicy
     /**
      * Determine whether the user can view the seller.
      *
-     * @param  \App\User  $user
-     * @param  \App\Seller  $seller
+     * @param  \App\User $user
+     * @param  \App\Seller $seller
      * @return mixed
      */
     public function view(User $user, Seller $seller)
@@ -25,7 +25,7 @@ class SellerPolicy
     /**
      * Determine whether the user can sale.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
      * @return mixed
      */
     public function sale(User $user, Seller $seller)
@@ -36,8 +36,8 @@ class SellerPolicy
     /**
      * Determine whether the user can update the product.
      *
-     * @param  \App\User  $user
-     * @param  \App\Seller  $seller
+     * @param  \App\User $user
+     * @param  \App\Seller $seller
      * @return mixed
      */
     public function editProduct(User $user, Seller $seller)
@@ -48,8 +48,8 @@ class SellerPolicy
     /**
      * Determine whether the user can delete the product.
      *
-     * @param  \App\User  $user
-     * @param  \App\Seller  $seller
+     * @param  \App\User $user
+     * @param  \App\Seller $seller
      * @return mixed
      */
     public function deleteProduct(User $user, Seller $seller)
