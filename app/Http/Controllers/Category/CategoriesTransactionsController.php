@@ -14,6 +14,8 @@ class CategoriesTransactionsController extends ApiController
 
     public function index(Category $category)
     {
+        $this->allowedAdminAction();
+
         $transactions = $category->products()->has('transactions')->with('transactions')->get()
             ->pluck('transactions')->collapse();
 

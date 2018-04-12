@@ -16,6 +16,8 @@ class CategoriesBuyersController extends ApiController
 
     public function index(Category $category)
     {
+        $this->allowedAdminAction();
+
         $buyers = $category->products()->whereHas('transactions')->with('transactions.buyer')->get()
             ->pluck('transactions')->collapse()->pluck('buyer')->unique('id')->values();
 
