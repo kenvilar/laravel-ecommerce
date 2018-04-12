@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \Barryvdh\Cors\HandleCors::class,
+            'cors',
             'signature:X-Application-Name',
             'throttle:10,1',
             'bindings',
@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'transform.input' => \App\Http\Middleware\TransformInput::class,
         'client.credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
         'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
-        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes
-        ::class,
+        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+        'cors' => \Barryvdh\Cors\HandleCors::class,
     ];
 }
